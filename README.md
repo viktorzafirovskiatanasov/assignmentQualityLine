@@ -51,7 +51,7 @@ Then open:
 2. Make sure Chrome and ChromeDriver are available
 3. Run:
 ```bash
-python test_yield.py
+python run_selenium_check.py
 ```
 
 ## Deployment
