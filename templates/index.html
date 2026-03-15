@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Yield Monitor</title>
+    <link rel="stylesheet" href="/static/style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="app-shell">
+        <header class="topbar">
+            <div>
+                <p class="eyebrow">Manufacturing Dashboard</p>
+                <h1>Yield Monitor</h1>
+            </div>
+            <div class="actions">
+                <button id="manual-test-btn" class="btn btn-primary">Manual Test</button>
+                <button id="view-api-btn" class="btn">View API</button>
+                <button id="view-script-btn" class="btn">View Script</button>
+            </div>
+        </header>
+
+        <section class="summary-row">
+            <div class="summary-card">
+                <span>Total Units</span>
+                <strong id="total-units">0</strong>
+            </div>
+            <div class="summary-card">
+                <span>Selected Part</span>
+                <strong id="selected-part-label">001PN001</strong>
+            </div>
+            <div class="summary-card">
+                <span>Passed Units</span>
+                <strong id="passed-units">0</strong>
+            </div>
+            <div class="summary-card">
+                <span>Failed Units</span>
+                <strong id="failed-units">0</strong>
+            </div>
+        </section>
+
+        <main class="dashboard-grid">
+            <section class="panel">
+    <div class="panel-header">
+        <h2>Daily Testing Volume</h2>
+        <span>Last 7 days</span>
+    </div>
+    <div class="chart-box">
+        <canvas id="dailyChart"></canvas>
+    </div>
+</section>
+
+<section class="panel">
+    <div class="panel-header">
+        <h2>Part Number Distribution</h2>
+        <span>Click chart or legend</span>
+    </div>
+    <div class="chart-box">
+        <canvas id="partChart"></canvas>
+    </div>
+    <div id="part-legend" class="legend"></div>
+</section>
+
+            <section class="panel gauge-panel">
+                <div class="panel-header">
+                    <h2>Yield Gauge</h2>
+                    <span>Selected part live stats</span>
+                </div>
+                <div class="gauge-wrap">
+                    <div class="gauge-ring" id="gauge-ring">
+                        <div class="gauge-inner">
+                            <span id="yield-value">0%</span>
+                            <small>Yield</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="gauge-details">
+                    <div><span>Part</span><strong id="gauge-part">001PN001</strong></div>
+                    <div><span>Tested</span><strong id="gauge-total">0</strong></div>
+                    <div><span>Passed</span><strong id="gauge-passed">0</strong></div>
+                    <div><span>Failed</span><strong id="gauge-failed">0</strong></div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <div id="modal-overlay" class="modal-overlay hidden">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3>Manual Testing</h3>
+                <button id="close-modal-btn" class="icon-btn">×</button>
+            </div>
+            <form id="manual-test-form" class="manual-form">
+                <label>
+                    <span>Serial Number</span>
+                    <input id="serial_number" name="serial_number" type="text" placeholder="Enter serial number" required />
+                </label>
+
+                <label>
+                    <span>Part Number</span>
+                    <select id="part_number" name="part_number">
+                        {% for part in part_numbers %}
+                        <option value="{{ part }}">{{ part }}</option>
+                        {% endfor %}
+                    </select>
+                </label>
+
+                <label>
+                    <span>Timestamp</span>
+                    <div id="live-timestamp" class="timestamp-box"></div>
+                </label>
+
+                <label class="checkbox-row">
+                    <span>Status</span>
+                    <div class="checkbox-wrap">
+                        <input id="status" name="status" type="checkbox" checked />
+                        <span id="status-label">Pass</span>
+                    </div>
+                </label>
+
+                <button id="add-test-btn" type="submit" class="btn btn-primary full-width">Add</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>
