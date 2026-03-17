@@ -76,10 +76,10 @@ def read_yield(driver, wait):
     log("Waiting for yield to update")
 
     wait.until(
-        lambda d: d.find_element(By.ID, "gauge-yield").text != "0%"
+        lambda d: d.find_element(By.ID, "yield-value").text != "0%"
     )
 
-    value = driver.find_element(By.ID, "gauge-yield").text.strip()
+    value = driver.find_element(By.ID, "yield-value").text.strip()
 
     log(f"Yield value detected: {value}")
 

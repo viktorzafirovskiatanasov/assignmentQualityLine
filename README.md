@@ -2,6 +2,9 @@
 
 A FastAPI-based yield monitoring dashboard built for the practical exam.
 
+# Link to video showcase of the project
+https://drive.google.com/file/d/1EsVSQzGO0zAE_6_nIuWrFEiNOiCqNxXN/view?usp=drive_link
+
 ## Stack
 - Python
 - FastAPI
